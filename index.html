@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زادكم - متجرك الإلكتروني المميز</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- شريط الإعلانات العلوي -->
+    <div class="top-banner">
+        <div class="container">
+            <p><i class="fas fa-shipping-fast"></i> شحن مجاني للطلبات أكثر من 200 ريال | <i class="fas fa-phone"></i> اتصل بنا: 966-123-456789</p>
+        </div>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1><i class="fas fa-shopping-bag"></i> زادكم</h1>
+                    <span class="logo-subtitle">Zadkom</span>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن المنتجات..." id="searchInput">
+                    <button type="button" onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </div>
+                    <div class="wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="count" id="wishlistCount">0</span>
+                    </div>
+                    <div class="cart" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="#products">المنتجات <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="filterProducts('electronics')">إلكترونيات</a></li>
+                            <li><a href="#" onclick="filterProducts('fashion')">أزياء</a></li>
+                            <li><a href="#" onclick="filterProducts('home')">منزل وحديقة</a></li>
+                            <li><a href="#" onclick="filterProducts('sports')">رياضة</a></li>
+                            <li><a href="#" onclick="filterProducts('books')">كتب</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#offers">العروض</a></li>
+                    <li><a href="#brands">العلامات التجارية</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- البانر الرئيسي -->
+    <section class="hero-slider" id="home">
+        <div class="slider-container">
+            <div class="slide active">
+                <div class="slide-content">
+                    <div class="container">
+                        <div class="slide-text">
+                            <h2>عروض خاصة على الإلكترونيات</h2>
+                            <p>خصم يصل إلى 50% على أحدث الأجهزة الذكية</p>
+                            <button class="btn-primary" onclick="scrollToSection('products')">تسوق الآن</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"></div>
+            </div>
+            
+            <div class="slide">
+                <div class="slide-content">
+                    <div class="container">
+                        <div class="slide-text">
+                            <h2>أزياء عصرية للجميع</h2>
+                            <p>اكتشف أحدث صيحات الموضة بأسعار مناسبة</p>
+                            <button class="btn-primary" onclick="filterProducts('fashion')">اكتشف المجموعة</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"></div>
+            </div>
+            
+            <div class="slide">
+                <div class="slide-content">
+                    <div class="container">
+                        <div class="slide-text">
+                            <h2>منتجات منزلية فاخرة</h2>
+                            <p>حوّل منزلك إلى قصر بأجمل الديكورات</p>
+                            <button class="btn-primary" onclick="filterProducts('home')">تسوق المنزل</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"></div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- الفئات الرئيسية -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">تسوق حسب الفئة</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterProducts('electronics')">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="إلكترونيات">
+                    </div>
+                    <div class="category-info">
+                        <h3>إلكترونيات</h3>
+                        <p>أحدث الأجهزة التقنية</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="filterProducts('fashion')">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="أزياء">
+                    </div>
+                    <div class="category-info">
+                        <h3>أزياء</h3>
+                        <p>ملابس عصرية وأنيقة</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="filterProducts('home')">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="منزل">
+                    </div>
+                    <div class="category-info">
+                        <h3>منزل وحديقة</h3>
+                        <p>كل ما تحتاجه لمنزلك</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="filterProducts('sports')">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="رياضة">
+                    </div>
+                    <div class="category-info">
+                        <h3>رياضة</h3>
+                        <p>معدات رياضية متنوعة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المنتجات المميزة -->
+    <section class="featured-products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المنتجات المميزة</h2>
+                <div class="filter-tabs">
+                    <button class="filter-btn active" onclick="filterProducts('all')">الكل</button>
+                    <button class="filter-btn" onclick="filterProducts('electronics')">إلكترونيات</button>
+                    <button class="filter-btn" onclick="filterProducts('fashion')">أزياء</button>
+                    <button class="filter-btn" onclick="filterProducts('home')">منزل</button>
+                    <button class="filter-btn" onclick="filterProducts('sports')">رياضة</button>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- سيتم إضافة المنتجات هنا بواسطة JavaScript -->
+            </div>
+            
+            <div class="load-more">
+                <button class="btn-secondary" onclick="loadMoreProducts()">عرض المزيد</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- العروض الخاصة -->
+    <section class="special-offers" id="offers">
+        <div class="container">
+            <h2 class="section-title">عروض محدودة</h2>
+            <div class="offers-grid">
+                <div class="offer-card big-offer">
+                    <div class="offer-content">
+                        <div class="offer-badge">خصم 70%</div>
+                        <h3>عرض الجمعة البيضاء</h3>
+                        <p>خصومات هائلة على جميع المنتجات</p>
+                        <div class="countdown" id="countdown">
+                            <div class="time-unit">
+                                <span class="number" id="days">00</span>
+                                <span class="label">يوم</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="number" id="hours">00</span>
+                                <span class="label">ساعة</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="number" id="minutes">00</span>
+                                <span class="label">دقيقة</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="number" id="seconds">00</span>
+                                <span class="label">ثانية</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary">تسوق الآن</button>
+                    </div>
+                    <div class="offer-image">
+                        <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="عرض خاص">
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="شحن مجاني">
+                    </div>
+                    <div class="offer-content">
+                        <h4>شحن مجاني</h4>
+                        <p>على جميع الطلبات أكثر من 200 ريال</p>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="ضمان الجودة">
+                    </div>
+                    <div class="offer-content">
+                        <h4>ضمان الجودة</h4>
+                        <p>إرجا�� مجاني خلال 30 يوم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- العلامات التجارية -->
+    <section class="brands" id="brands">
+        <div class="container">
+            <h2 class="section-title">العلامات التجاري�� الشريكة</h2>
+            <div class="brands-slider">
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=Apple" alt="Apple">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=Samsung" alt="Samsung">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=Nike" alt="Nike">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=Adidas" alt="Adidas">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=Sony" alt="Sony">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/150x80/333/fff?text=LG" alt="LG">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- سلة التسوق -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سلة التسوق</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">سلة التسوق فارغة</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>المجموع: <span id="cartTotal">0 ريال</span></span>
+            </div>
+            <button class="btn-primary checkout-btn" onclick="checkout()">إتمام الشراء</button>
+        </div>
+    </div>
+
+    <!-- نافذة تفاصيل المنتج -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProductModal()">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- سيتم إضافة تفاصيل المنتج هنا -->
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>زادكم - Zadkom</h3>
+                    <p>متجرك المميز لكل ما تحتاجه. نوفر لك أفضل المنتجات بأسعار منافسة وخدمة عملاء متميزة. زادكم هو زادك للحياة العصرية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#offers">العروض</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>خدمة العملاء</h4>
+                    <ul>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">الشحن والتوصيل</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 966-123-456789</p>
+                        <p><i class="fas fa-envelope"></i> info@mystore.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 زادكم - Zadkom. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- أزرار التمرير -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- تحميل الـ JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
